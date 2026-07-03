@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ معتز × سما ❤️ - أجمل قصة حب</title>
+    <style>
+        :root {
+            --pink: #ff6b9d;
+            --pink-light: #ffa3c4;
+            --purple: #9b59b6;
+            --purple-light: #c39bd3;
+            --purple-dark: #6c3483;
+            --white: #ffffff;
+            --gold: #f4d03f;
+            --gold-light: #f9e79f;
+            --bg-dark: #1a0a2e;
+            --bg-medium: #1e1035;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: rgba(0, 0, 0, 0.2);
+            --text-primary: #f0e6f6;
+            --text-secondary: #d5c3e0;
+            --card-bg: rgba(30, 16, 53, 0.6);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--purple) var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple);
+            border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: default;
+            position: relative;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* ============ ANIMATED BACKGROUND ============ */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-aurora {
+            position: fixed;
+            top: -30%;
+            left: -20%;
+            width: 140%;
+            height: 160%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(155, 89, 182, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(255, 107, 157, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 70%, rgba(155, 89, 182, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 30%, rgba(244, 208, 63, 0.1) 0%, transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+            animation: auroraMove 15s ease-in-out infinite;
+        }
+        @keyframes auroraMove {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(3%, -2%) scale(1.05);
+            }
+            50% {
+                transform: translate(-2%, 3%) scale(1.03);
+            }
+            75% {
+                transform: translate(1%, -3%) scale(1.06);
+            }
+        }
+
+        /* ============ LOADING SCREEN ============ */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loading-heart {
+            font-size: 80px;
+            animation: heartbeat 0.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px var(--pink));
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.25);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.25);
+            }
+            56% {
+                transform: scale(1);
+            }
+        }
+        .loading-bar-container {
+            width: 260px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        }
+        .loading-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), var(--purple), var(--gold));
+            border-radius: 20px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 15px var(--pink-light);
+        }
+        .loading-text {
+            margin-top: 18px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            letter-spacing: 2px;
+            z-index: 1;
+            animation: fadeInOut 1.5s ease-in-out infinite;
+        }
+        @keyframes fadeInOut {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ============ MAIN CONTENT WRAPPER ============ */
+        #main-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1s ease 0.3s;
+        }
+        #main-content.visible {
+            opacity: 1;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-names {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--pink-light), var(--white), var(--purple-light), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.5));
+            animation: glowPulse 2s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 70px rgba(255, 107, 157, 0.9));
+            }
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            margin-top: 20px;
+            max-width: 600px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        .hero-btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 35px rgba(255, 107, 157, 0.4);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-decoration: none;
+        }
+        .hero-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 45px rgba(255, 107, 157, 0.6);
+        }
+        .hero-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .hero-btn:hover::after {
+            opacity: 1;
+        }
+        .hero-hearts {
+            font-size: 40px;
+            animation: floatHearts 3s ease-in-out infinite;
+            position: absolute;
+            pointer-events: none;
+        }
+        @keyframes floatHearts {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        /* ============ SECTION STYLES ============ */
+        .section {
+            padding: 70px 20px;
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--pink-light), var(--gold-light), var(--purple-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink), var(--purple), var(--gold));
+            margin: 15px auto 0;
+            border-radius: 10px;
+        }
+
+        /* ============ GLASS CARDS ============ */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px var(--glass-shadow);
+            transition: all var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .neumorph-card {
+            background: var(--bg-medium);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3), -4px -4px 12px rgba(255, 255, 255, 0.04);
+            transition: all var(--transition);
+        }
+        .neumorph-card:hover {
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35), -2px -2px 8px rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
+        }
+
+        /* ============ LOVE COUNTER ============ */
+        .counter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            text-align: center;
+        }
+        .counter-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            min-width: 90px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all var(--transition);
+        }
+        .counter-item:hover {
+            transform: scale(1.08);
+            border-color: var(--pink-light);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.25);
+        }
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            display: block;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+        }
+        .counter-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ============ TIMELINE ============ */
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--pink), var(--purple), var(--gold));
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-right: 65px;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.7s ease;
+        }
+        .timeline-item.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-dot {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.7);
+            z-index: 2;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 107, 157, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 107, 157, 1.2);
+            }
+        }
+        .timeline-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 22px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+        .timeline-content h3 {
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ============ LETTER SECTION ============ */
+        .letter-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--pink), transparent, var(--purple), transparent, var(--gold));
+            z-index: -1;
+            opacity: 0.5;
+            animation: borderGlow 4s linear infinite;
+        }
+        @keyframes borderGlow {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 300%;
+            }
+        }
+        .letter-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            min-height: 200px;
+            text-align: right;
+        }
+        .letter-text .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: var(--pink);
+            margin-right: 2px;
+            animation: blink 0.7s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .love-response-btn {
+            display: none;
+            margin: 30px auto 0;
+            padding: 15px 40px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--pink), var(--purple-dark));
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 35px rgba(255, 107, 157, 0.5);
+            transition: all var(--transition);
+            text-align: center;
+        }
+        .love-response-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 18px 45px rgba(255, 107, 157, 0.7);
+        }
+        .love-response-btn.show {
+            display: block;
+            animation: bounceIn 0.7s ease;
+        }
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ============ REASONS GRID ============ */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .reason-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all var(--transition);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .reason-card:hover {
+            transform: translateY(-5px) rotateY(5deg);
+            box-shadow: 0 20px 45px rgba(255, 107, 157, 0.25);
+            border-color: var(--pink-light);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .reason-card .reason-num {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-size: 0.7rem;
+            color: var(--gold-light);
+            opacity: 0.7;
+            font-weight: 700;
+        }
+        .reason-card::after {
+            content: '❤️';
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+
+        /* ============ GALLERY ============ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 4/5;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all var(--transition);
+            background: linear-gradient(135deg, #3d1a5c, #6b2d5c, #3d1a5c);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.35);
+            z-index: 5;
+        }
+        .gallery-item-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+        .gallery-item-inner .gallery-icon {
+            font-size: 5rem;
+            opacity: 0.8;
+            transition: all var(--transition);
+        }
+        .gallery-item:hover .gallery-icon {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: var(--white);
+            font-size: 0.85rem;
+            text-align: center;
+            opacity: 0;
+            transition: all var(--transition);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 85vw;
+            max-height: 75vh;
+            border-radius: var(--radius);
+            font-size: 10rem;
+            text-align: center;
+            animation: zoomIn 0.4s ease;
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 10;
+            transition: all var(--transition);
+        }
+        .lightbox-close:hover {
+            color: var(--pink);
+            transform: scale(1.2);
+        }
+
+        /* ============ 3D BOOK ============ */
+        .book-container {
+            perspective: 1500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
+        .book-3d {
+            width: 300px;
+            height: 380px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+            cursor: pointer;
+        }
+        .book-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #2d1045, #1e0a30);
+            border-radius: 8px 20px 20px 8px;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            backface-visibility: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.8;
+            transition: all 0.5s ease;
+        }
+        .book-page .page-emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .book-nav {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        .book-nav-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .book-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--pink-light);
+        }
+        .book-page-indicator {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* ============ QUOTES SLIDER ============ */
+        .quotes-slider {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quote-slide {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(20px);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .quote-slide.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+        }
+        .quote-author {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ============ DREAMS GRID ============ */
+        .dreams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+        .dream-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all var(--transition);
+            font-size: 2.5rem;
+            cursor: default;
+        }
+        .dream-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(255, 107, 157, 0.3);
+            border-color: var(--gold-light);
+        }
+        .dream-card .dream-label {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* ============ PROMISE SECTION ============ */
+        .promise-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            text-align: center;
+            line-height: 2;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+        .promise-container .promise-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* ============ MUSIC PLAYER ============ */
+        .music-player {
+            max-width: 400px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 18px 28px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--white);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--pink-light);
+            box-shadow: 0 0 25px rgba(255, 107, 157, 0.4);
+        }
+        .music-progress {
+            flex: 1;
+            min-width: 100px;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
+        }
+        .music-progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.7);
+            cursor: pointer;
+        }
+        .music-volume {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
+        }
+        .music-volume::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--purple-light);
+            cursor: pointer;
+        }
+        .music-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 2;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+        }
+        .footer .footer-heart {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        /* ============ HEART EXPLOSION CANVAS ============ */
+        #explosion-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* ============ CURSOR GLOW ============ */
+        .cursor-glow {
+            position: fixed;
+            pointer-events: none;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .counter-item {
+                min-width: 65px;
+                padding: 15px 10px;
+            }
+            .counter-number {
+                font-size: 1.6rem;
+            }
+            .counter-label {
+                font-size: 0.7rem;
+            }
+            .timeline::before {
+                right: 15px;
+            }
+            .timeline-item {
+                padding-right: 45px;
+            }
+            .timeline-dot {
+                right: 6px;
+                width: 18px;
+                height: 18px;
+            }
+            .reasons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            .reason-card {
+                padding: 15px;
+                font-size: 0.78rem;
+                min-height: 75px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            .dreams-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            .book-3d {
+                width: 240px;
+                height: 310px;
+            }
+            .book-page {
+                padding: 20px 15px;
+                font-size: 0.85rem;
+            }
+            .music-player {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 20px;
+                border-radius: 30px;
+            }
+            .hero-names {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .counter-item {
+                min-width: 50px;
+                padding: 10px 6px;
+            }
+            .counter-number {
+                font-size: 1.3rem;
+            }
+            .reasons-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .reason-card {
+                font-size: 0.7rem;
+                padding: 10px;
+                min-height: 60px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dreams-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ BACKGROUND ELEMENTS ============ -->
+    <div class="bg-aurora"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="cursor-glow" id="cursor-glow"></div>
+    <canvas id="explosion-canvas"></canvas>
+
+    <!-- ============ LOADING SCREEN ============ -->
+    <div id="loading-screen">
+        <div class="loading-heart">❤️</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar-fill" id="loading-bar-fill"></div>
+        </div>
+        <div class="loading-text">بحمل الحب... استني شوية</div>
+    </div>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div id="main-content">
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-hearts" style="top:15%;left:10%;animation-delay:0s;">💕</div>
+            <div class="hero-hearts" style="top:20%;right:8%;animation-delay:1s;font-size:30px;">🌸</div>
+            <div class="hero-hearts" style="bottom:20%;left:15%;animation-delay:2s;font-size:35px;">🦋</div>
+            <div class="hero-hearts" style="bottom:25%;right:12%;animation-delay:1.5s;">✨</div>
+            <h1 class="hero-names">❤️ معتز × سما ❤️</h1>
+            <p class="hero-subtitle">أجمل قصة حب بدأت من تعليق على تيك توك</p>
+            <a href="#counter-section" class="hero-btn">❤️ ابدأ رحلتنا ❤️</a>
+        </section>
+
+        <!-- LOVE COUNTER -->
+        <section class="section" id="counter-section">
+            <h2 class="section-title">⏳ عداد حبنا من أول يوم</h2>
+            <div class="counter-container" id="counter-container">
+                <div class="counter-item"><span class="counter-number" id="count-years">0</span><span class="counter-label">سنين</span></div>
+                <div class="counter-item"><span class="counter-number" id="count-months">0</span><span class="counter-label">شهور</span></div>
+                <div class="counter-item"><span class="counter-number" id="count-days">0</span><span class="counter-label">أيام</span></div>
+                <div class="counter-item"><span class="counter-number" id="count-hours">0</span><span class="counter-label">ساعات</span></div>
+                <div class="counter-item"><span class="counter-number" id="count-minutes">0</span><span class="counter-label">دقايق</span></div>
+                <div class="counter-item"><span class="counter-number" id="count-seconds">0</span><span class="counter-label">ثواني</span></div>
+            </div>
+            <p style="text-align:center;margin-top:20px;color:var(--text-secondary);">من يوم 4 يوليو 2024 وكل ثانية بتقربني منك أكتر ❤️</p>
+        </section>
+
+        <!-- AGES -->
+        <section class="section">
+            <h2 class="section-title">🎂 أعمارنا</h2>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;text-align:center;">
+                <div class="glass-card" style="min-width:180px;">
+                    <div style="font-size:3rem;">👦</div>
+                    <h3 style="color:var(--gold-light);">معتز</h3>
+                    <p style="color:var(--text-secondary);">19 / 3 / 2009</p>
+                    <p style="font-size:1.8rem;font-weight:900;color:var(--white);" id="age-moataz">0</p>
+                    <p style="color:var(--text-secondary);">سنة</p>
+                </div>
+                <div class="glass-card" style="min-width:180px;">
+                    <div style="font-size:3rem;">👧</div>
+                    <h3 style="color:var(--gold-light);">سما</h3>
+                    <p style="color:var(--text-secondary);">20 / 11 / 2009</p>
+                    <p style="font-size:1.8rem;font-weight:900;color:var(--white);" id="age-sama">0</p>
+                    <p style="color:var(--text-secondary);">سنة</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE STORY TIMELINE -->
+        <section class="section">
+            <h2 class="section-title">📖 قصة حبنا</h2>
+            <div class="timeline" id="timeline">
+                <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h3>🎬 البداية - تعليق على تيك توك</h3><p>كل حاجة بدأت بتعليق صغير على فيديو في تيك توك. مكنتش أعرف إن التعليق ده هيكون بداية أحلى حكاية في حياتي. شفت تعليقها وقلبي حس بحاجة غريبة، كأن الكون بيقولي: "دي اللي مستنيك".</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot" style="background:var(--purple-light);box-shadow:0 0 20px rgba(155,89,182,0.7);"></div><div class="timeline-content"><h3>💬 بدأنا نتكلم</h3><p>بعد التعليق، بدأنا نتكلم في الرسايل. كانت كل رسالة منها بتخليني مبتسم من غير ما أحس. كلامها كان مختلف، حنين، ذكي، وفيه حاجة مش موجودة في أي حد تاني.</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot" style="background:var(--gold);box-shadow:0 0 20px rgba(244,208,63,0.7);"></div><div class="timeline-content"><h3>📞 أول مكالمة</h3><p>لما سمعت صوتها أول مرة، قلبي دق بسرعة. صوتها كان أحلى من أي حاجة تخيلتها. من ساعتها وأنا بعشق أسمع صوتها كل يوم، وبستنى المكالمات بفارغ الصبر.</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h3>❤️ وقعنا في الحب</h3><p>مع الوقت، الكلام بقى أعمق، والمشاعر بقت أقوى. حبينا بعض من غير ما نتقابل، وده أغرب وأجمل إحساس. حبينا أرواحنا قبل ما نشوف بعض، وده معناه إن حبنا حقيقي جدًا.</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot" style="background:var(--purple-light);box-shadow:0 0 20px rgba(155,89,182,0.7);"></div><div class="timeline-content"><h3>💭 حلم الجواز</h3><p>من وأنا عارف إني عايز أتقدملها وأتجوزها. مش مجرد حب عابر، ده حب العمر كله. بحلم باليوم اللي هقف فيه قدامها وألبسها الدبلة، ونبدأ حياتنا سوا.</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot" style="background:var(--gold);box-shadow:0 0 20px rgba(244,208,63,0.7);"></div><div class="timeline-content"><h3>🌟 المستقبل</h3><p>لسه الحكاية مكملة... وكل يوم بيزيد حبي ليها. مستني اليوم اللي هشوفها فيه وأحضنها وأقولها: "أخيرًا مع بعض". وربنا يكتبلنا الخير ويجمعنا في الحلال.</p></div></div>
+            </div>
+        </section>
+
+        <!-- LETTER FROM MOATAZ -->
+        <section class="section">
+            <h2 class="section-title">💌 رسالة من معتز لسما</h2>
+            <div class="letter-container">
+                <div class="letter-text" id="letter-text"><span class="cursor-blink"></span></div>
+                <button class="love-response-btn" id="love-response-btn">❤️ وأنا كمان بحبك يا معتز ❤️</button>
+            </div>
+        </section>
+
+        <!-- 100 REASONS -->
+        <section class="section">
+            <h2 class="section-title">💯 سبب بحب سما عشانهم</h2>
+            <div class="reasons-grid" id="reasons-grid"></div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="section">
+            <h2 class="section-title">🖼️ معرض صور حبنا</h2>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" id="lightbox-close">✕</span>
+            <div class="lightbox-content" id="lightbox-content"></div>
+        </div>
+
+        <!-- 3D LOVE BOOK -->
+        <section class="section">
+            <h2 class="section-title">📕 كتاب الحب</h2>
+            <div class="book-container">
+                <div class="book-3d" id="book-3d">
+                    <div class="book-page" id="book-page-content">
+                        <span class="page-emoji">💌</span>
+                        <span>كل صفحة في الكتاب ده شايلة كلمة من قلبي ليكي يا سما...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-nav">
+                <button class="book-nav-btn" id="book-prev">⬅️ اللي قبلها</button>
+                <button class="book-nav-btn" id="book-next">اللي بعدها ➡️</button>
+            </div>
+            <p class="book-page-indicator" id="book-indicator">صفحة 1 من 7</p>
+        </section>
+
+        <!-- QUOTES SLIDER -->
+        <section class="section">
+            <h2 class="section-title">💬 اقتباسات حب</h2>
+            <div class="quotes-slider" id="quotes-slider"></div>
+        </section>
+
+        <!-- DREAMS -->
+        <section class="section">
+            <h2 class="section-title">✨ أحلامنا سوا</h2>
+            <div class="dreams-grid">
+                <div class="dream-card">💍<span class="dream-label">خطوبتنا</span></div>
+                <div class="dream-card">👰<span class="dream-label">فرحنا</span></div>
+                <div class="dream-card">🏡<span class="dream-label">بيتنا</span></div>
+                <div class="dream-card">✈️<span class="dream-label">سفرنا</span></div>
+                <div class="dream-card">🚗<span class="dream-label">عربيتنا</span></div>
+                <div class="dream-card">👶<span class="dream-label">أطفالنا</span></div>
+                <div class="dream-card">❤️<span class="dream-label">العمر كله سوا</span></div>
+            </div>
+        </section>
+
+        <!-- PROMISE -->
+        <section class="section">
+            <h2 class="section-title">🤝 وعد مني ليكي يا سما</h2>
+            <div class="promise-container">
+                <span class="promise-icon">💍</span>
+                <p>وعد مني ليكي يا سما...<br>
+                    وعد إني أفضل معاكي على طول، في الحلوة والمرة، في الفرح والضيق.<br>
+                    وعد إني أحترمك وأقدرك وأخاف عليكي.<br>
+                    وعد إني أكون مخلص ليكي طول عمري، ومتخونيش ولا أجرحك.<br>
+                    وعد إني أكون سندك وضهرك وحبيبك وصاحبك.<br>
+                    وعد إني أحبك كل يوم أكتر من اللي قبله.<br>
+                    وعد إني أتقدملك وأتجوزك وأخليكي أسعد واحدة في الدنيا.<br>
+                    ده مش كلام وبس... ده وعد راجل لست الكل. ❤️</p>
+            </div>
+        </section>
+
+        <!-- MUSIC PLAYER -->
+        <section class="section">
+            <h2 class="section-title">🎵 مزيكا رومانسية</h2>
+            <div class="music-player" id="music-player">
+                <button class="music-btn" id="music-play-btn" title="تشغيل / إيقاف">▶️</button>
+                <input type="range" class="music-progress" id="music-progress" value="0" min="0" max="100" title="التقدم">
+                <span class="music-label">🎶</span>
+                <input type="range" class="music-volume" id="music-volume" value="0.5" min="0" max="1" step="0.05" title="الصوت">
+                <span class="music-label">🔊</span>
+            </div>
+            <p style="text-align:center;color:var(--text-secondary);font-size:0.8rem;margin-top:10px;">اضغطي على الزر علشان تسمعي موسيقى رومانسية وأنتِ بتتصفحي الموقع 🎀</p>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span class="footer-heart">❤️</span>
+            <p>Made with Love by Moataz for Sama ❤️</p>
+            <p style="max-width:600px;margin:15px auto;font-size:0.9rem;">الموقع ده معمول مخصوص ليكي يا سما... يمكن يكون مجرد موقع، لكنه شايل كل الحب اللي جوايا ليكي، وكل حلم نفسي أعيشه معاكي. بحبك وهفضل أحبك طول العمر. ❤️</p>
+        </footer>
+
+    </div>
+
+    <script>
+        (function() {
+            // ============ DOM ELEMENTS ============
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingBarFill = document.getElementById('loading-bar-fill');
+            const mainContent = document.getElementById('main-content');
+            const cursorGlow = document.getElementById('cursor-glow');
+            const bgCanvas = document.getElementById('bg-canvas');
+            const explosionCanvas = document.getElementById('explosion-canvas');
+            const ctx = bgCanvas.getContext('2d');
+            const expCtx = explosionCanvas.getContext('2d');
+            const letterText = document.getElementById('letter-text');
+            const loveResponseBtn = document.getElementById('love-response-btn');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxContent = document.getElementById('lightbox-content');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const quotesSlider = document.getElementById('quotes-slider');
+            const book3d = document.getElementById('book-3d');
+            const bookPageContent = document.getElementById('book-page-content');
+            const bookIndicator = document.getElementById('book-indicator');
+            const musicPlayBtn = document.getElementById('music-play-btn');
+            const musicProgress = document.getElementById('music-progress');
+            const musicVolume = document.getElementById('music-volume');
+
+            // ============ AUDIO CONTEXT FOR MUSIC ============
+            let audioCtx = null;
+            let musicPlaying = false;
+            let musicGainNode = null;
+            let musicOscillators = [];
+            let musicInterval = null;
+            let musicStartTime = 0;
+            let musicPausedAt = 0;
+            let musicTotalDuration = 120;
+            let musicVolumeValue = 0.5;
+
+            const romanticNotes = [
+                261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 466.16, 523.25,
+                493.88, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63, 293.66,
+                349.23, 392.00, 440.00, 523.25, 587.33, 659.25, 587.33, 523.25
+            ];
+            const noteDurations = [0.8, 0.6, 0.7, 0.5, 0.9, 1.0, 0.6, 0.8, 0.7, 0.5, 0.6, 0.8, 0.7, 0.5, 0.9, 0.6,
+                0.7, 0.5, 0.8, 1.0, 0.6, 0.7, 0.5, 0.9
+            ];
+            let currentNoteIndex = 0;
+            let currentOscillator = null;
+
+            function initAudioContext() {
+                if (!audioCtx) {
+                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                    musicGainNode = audioCtx.createGain();
+                    musicGainNode.gain.value = musicVolumeValue;
+                    musicGainNode.connect(audioCtx.destination);
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            }
+
+            function playNextNote() {
+                if (!musicPlaying || !audioCtx) return;
+                if (currentOscillator) {
+                    try { currentOscillator.stop(); } catch (e) {}
+                    currentOscillator = null;
+                }
+                const note = romanticNotes[currentNoteIndex % romanticNotes.length];
+                const duration = noteDurations[currentNoteIndex % noteDurations.length];
+                const osc = audioCtx.createOscillator();
+                const noteGain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = note;
+                noteGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                noteGain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + duration * 0.7);
+                noteGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration);
+                osc.connect(noteGain);
+                noteGain.connect(musicGainNode);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + duration + 0.05);
+                currentOscillator = osc;
+                currentNoteIndex++;
+                const nextDelay = duration * 1000 * 0.85;
+                musicInterval = setTimeout(playNextNote, nextDelay);
+            }
+
+            function startMusic() {
+                initAudioContext();
+                musicPlaying = true;
+                musicStartTime = Date.now() - musicPausedAt * 1000;
+                currentNoteIndex = 0;
+                playNextNote();
+                musicPlayBtn.textContent = '⏸️';
+                updateMusicProgress();
+            }
+
+            function stopMusic() {
+                musicPlaying = false;
+                if (currentOscillator) {
+                    try { currentOscillator.stop(); } catch (e) {}
+                    currentOscillator = null;
+                }
+                if (musicInterval) {
+                    clearTimeout(musicInterval);
+                    musicInterval = null;
+                }
+                musicPausedAt = (Date.now() - musicStartTime) / 1000;
+                if (musicPausedAt > musicTotalDuration) musicPausedAt = 0;
+                musicPlayBtn.textContent = '▶️';
+            }
+
+            function updateMusicProgress() {
+                if (musicPlaying) {
+                    const elapsed = (Date.now() - musicStartTime) / 1000;
+                    const progress = Math.min((elapsed / musicTotalDuration) * 100, 100);
+                    musicProgress.value = progress;
+                    if (elapsed >= musicTotalDuration) {
+                        musicPausedAt = 0;
+                        musicStartTime = Date.now();
+                        currentNoteIndex = 0;
+                    }
+                    requestAnimationFrame(() => {
+                        if (musicPlaying) updateMusicProgress();
+                    });
+                }
+            }
+
+            musicPlayBtn.addEventListener('click', () => {
+                if (musicPlaying) {
+                    stopMusic();
+                } else {
+                    startMusic();
+                }
+            });
+            musicProgress.addEventListener('input', () => {
+                const val = parseFloat(musicProgress.value);
+                musicPausedAt = (val / 100) * musicTotalDuration;
+                if (musicPlaying) {
+                    stopMusic();
+                    startMusic();
+                }
+            });
+            musicVolume.addEventListener('input', () => {
+                musicVolumeValue = parseFloat(musicVolume.value);
+                if (musicGainNode) {
+                    musicGainNode.gain.value = musicVolumeValue;
+                }
+            });
+
+            // ============ LOADING SCREEN ============
+            let loadProgress = 0;
+            const loadInterval = setInterval(() => {
+                loadProgress += Math.random() * 18 + 4;
+                if (loadProgress >= 100) {
+                    loadProgress = 100;
+                    clearInterval(loadInterval);
+                    loadingBarFill.style.width = '100%';
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        mainContent.classList.add('visible');
+                        document.body.style.overflow = '';
+                        initAllEffects();
+                    }, 500);
+                }
+                loadingBarFill.style.width = loadProgress + '%';
+            }, 200);
+            document.body.style.overflow = 'hidden';
+
+            // ============ CURSOR GLOW ============
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+                cursorGlow.style.opacity = '1';
+            });
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.style.opacity = '0';
+            });
+            document.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                cursorGlow.style.left = touch.clientX + 'px';
+                cursorGlow.style.top = touch.clientY + 'px';
+                cursorGlow.style.opacity = '1';
+                setTimeout(() => { cursorGlow.style.opacity = '0'; }, 800);
+            });
+
+            // ============ BACKGROUND CANVAS PARTICLES ============
+            function resizeBgCanvas() {
+                bgCanvas.width = window.innerWidth;
+                bgCanvas.height = window.innerHeight;
+                explosionCanvas.width = window.innerWidth;
+                explosionCanvas.height = window.innerHeight;
+            }
+            resizeBgCanvas();
+            window.addEventListener('resize', resizeBgCanvas);
+
+            const bgParticles = [];
+            const maxBgParticles = 90;
+
+            function createBgParticle() {
+                const types = ['heart', 'star', 'sparkle', 'butterfly', 'rose'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                let emoji = '❤️';
+                if (type === 'star') emoji = '⭐';
+                if (type === 'sparkle') emoji = '✨';
+                if (type === 'butterfly') emoji = '🦋';
+                if (type === 'rose') emoji = '🌹';
+                return {
+                    x: Math.random() * bgCanvas.width,
+                    y: bgCanvas.height + 40,
+                    size: Math.random() * 20 + 12,
+                    speed: Math.random() * 1.2 + 0.3,
+                    wobble: Math.random() * 2 - 1,
+                    opacity: Math.random() * 0.7 + 0.3,
+                    emoji: emoji,
+                    type: type,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.03,
+                };
+            }
+
+            function animateBgParticles() {
+                ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+                while (bgParticles.length < maxBgParticles) {
+                    bgParticles.push(createBgParticle());
+                }
+                for (let i = bgParticles.length - 1; i >= 0; i--) {
+                    const p = bgParticles[i];
+                    p.y -= p.speed;
+                    p.x += Math.sin(p.y * 0.02) * p.wobble * 0.5;
+                    p.rotation += p.rotSpeed;
+                    ctx.save();
+                    ctx.globalAlpha = p.opacity * Math.min(1, (bgCanvas.height - p.y) / 200);
+                    ctx.translate(p.x, p.y);
+                    ctx.font = p.size + 'px serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(p.emoji, 0, 0);
+                    ctx.restore();
+                    if (p.y < -60 || p.opacity <= 0.01) {
+                        bgParticles.splice(i, 1);
+                    }
+                }
+                requestAnimationFrame(animateBgParticles);
+            }
+
+            // ============ EXPLOSION PARTICLES ============
+            const explosionParticles = [];
+
+            function createExplosionParticle(x, y) {
+                const emojis = ['❤️', '💕', '💗', '💖', '💘', '💝', '🦋', '🌸', '✨', '💫', '🌹', '💐'];
+                return {
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.5) * 12 - 4,
+                    life: 1,
+                    decay: Math.random() * 0.015 + 0.008,
+                    emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                    size: Math.random() * 30 + 15,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.2,
+                    gravity: 0.12,
+                };
+            }
+
+            function triggerExplosion(x, y, count = 80) {
+                for (let i = 0; i < count; i++) {
+                    explosionParticles.push(createExplosionParticle(x, y));
+                }
+            }
+
+            function animateExplosionParticles() {
+                expCtx.clearRect(0, 0, explosionCanvas.width, explosionCanvas.height);
+                for (let i = explosionParticles.length - 1; i >= 0; i--) {
+                    const p = explosionParticles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    p.life -= p.decay;
+                    p.rotation += p.rotSpeed;
+                    expCtx.save();
+                    expCtx.globalAlpha = p.life;
+                    expCtx.translate(p.x, p.y);
+                    expCtx.rotate(p.rotation);
+                    expCtx.font = p.size + 'px serif';
+                    expCtx.textAlign = 'center';
+                    expCtx.fillText(p.emoji, 0, 0);
+                    expCtx.restore();
+                    if (p.life <= 0) {
+                        explosionParticles.splice(i, 1);
+                    }
+                }
+                requestAnimationFrame(animateExplosionParticles);
+            }
+
+            // ============ LOVE COUNTER ============
+            const loveStartDate = new Date(2024, 6, 4); // July 4, 2024
+
+            function updateLoveCounter() {
+                const now = new Date();
+                let diff = now - loveStartDate;
+                if (diff < 0) diff = 0;
+                const totalSeconds = Math.floor(diff / 1000);
+                const seconds = totalSeconds % 60;
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const minutes = totalMinutes % 60;
+                const totalHours = Math.floor(totalMinutes / 60);
+                const hours = totalHours % 24;
+                const totalDays = Math.floor(totalHours / 24);
+                const years = Math.floor(totalDays / 365);
+                const remainingDaysAfterYears = totalDays - years * 365;
+                const months = Math.floor(remainingDaysAfterYears / 30);
+                const days = remainingDaysAfterYears % 30;
+
+                document.getElementById('count-years').textContent = years;
+                document.getElementById('count-months').textContent = months;
+                document.getElementById('count-days').textContent = days;
+                document.getElementById('count-hours').textContent = hours;
+                document.getElementById('count-minutes').textContent = minutes;
+                document.getElementById('count-seconds').textContent = seconds;
+            }
+            updateLoveCounter();
+            setInterval(updateLoveCounter, 1000);
+
+            // ============ AGE CALCULATOR ============
+            function calculateAge(birthDate) {
+                const now = new Date();
+                let age = now.getFullYear() - birthDate.getFullYear();
+                const m = now.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+            const moatazBirth = new Date(2009, 2, 19);
+            const samaBirth = new Date(2009, 10, 20);
+            document.getElementById('age-moataz').textContent = calculateAge(moatazBirth);
+            document.getElementById('age-sama').textContent = calculateAge(samaBirth);
+
+            // ============ TIMELINE REVEAL ============
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                timelineObserver.observe(item);
+            });
+
+            // ============ LETTER TYPING EFFECT ============
+            const fullLetter = `يا سما...
+
+من ساعة ما عرفتك وحياتي اتغيرت بالكامل. قبل ما تعرفي كنت واحد تايه، مش عارف هو عايز إيه. وبعد ما دخلتي حياتي، بقيت عارف إني عايزك أنتِ.
+
+بحبك يا سما... بحبك بجد. مش مجرد كلمة بتتقال، ده إحساس أنا بعيشه كل يوم. بحب ضحكتك اللي بتخليني أنسى الدنيا كلها. بحب صوتك اللي هو أحلى موسيقى سمعتها في حياتي. بحب كلامك اللي بيطمني وبيخليني أحس إني مش لوحدي. بحب اهتمامك بيا، اللي هو أغلى حاجة عندي.
+
+أنتِ أحسن حاجة حصلتلي في حياتي كلها. ولو رجع بيا الزمن، هختارك أنتِ من تاني ومن غير تفكير. كل علاقتنا كانت بالمكالمات والرسايل، ومع ذلك حبيتك أكتر من أي حد شفته في حياتي. لأني حبيت روحك، حبيت قلبك، حبيت كل حاجة فيكي.
+
+مفتقدك يا سما... بقالي كتير بحلم باليوم اللي أشوفك فيه. نفسي أقابلك وأحضنك وأقعد معاكي وأحكيلك كل اللي في قلبي. نفسي أمسك إيديكي وأبص في عينيكي وأقولك: "بحبك" وأنا شايفك قدامي.
+
+بوعدك يا سما... إني أفضل معاكي على طول. في الحلوة والمرة، في الفرح والحزن. هفضل جنبك وسندك وحبيبك. عمري ما هتخلى عنك ولا هجرحك ولا هخيب ظنك فيا.
+
+وحلمي الوحيد... إني أتقدملك وأتجوزك بإذن الله. ده مش حلم بعيد، ده هدفي وحياتي كلها. نفسي أشوفك بالطرحة البيضا، ونبني بيتنا سوا، ونعيش أحلى أيام عمرنا مع بعض.
+
+بحبك يا سما... وربنا يجمعنا في الحلال، ويفضل اسم معتز وسما مكتوبين جنب بعض طول العمر. ❤️`;
+
+            let letterRevealed = false;
+            let typingIndex = 0;
+            let typingTimeout = null;
+
+            function startTypingEffect() {
+                if (letterRevealed) return;
+                letterRevealed = true;
+                letterText.innerHTML = '';
+                typingIndex = 0;
+                typeNextChar();
+            }
+
+            function typeNextChar() {
+                if (typingIndex < fullLetter.length) {
+                    const char = fullLetter[typingIndex];
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    letterText.appendChild(span);
+                    if (char === '\n') {
+                        letterText.appendChild(document.createElement('br'));
+                    }
+                    // Tiny typing sound using oscillator
+                    if (audioCtx && musicVolumeValue > 0 && typingIndex % 3 === 0) {
+                        try {
+                            const tOsc = audioCtx.createOscillator();
+                            const tGain = audioCtx.createGain();
+                            tOsc.type = 'sine';
+                            tOsc.frequency.value = 800 + Math.random() * 400;
+                            tGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                            tGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.04);
+                            tOsc.connect(tGain);
+                            tGain.connect(audioCtx.destination);
+                            tOsc.start(audioCtx.currentTime);
+                            tOsc.stop(audioCtx.currentTime + 0.05);
+                        } catch (e) {}
+                    }
+                    typingIndex++;
+                    const delay = Math.random() * 40 + 20;
+                    typingTimeout = setTimeout(typeNextChar, delay);
+                } else {
+                    // Remove cursor blink
+                    const cursorEl = letterText.querySelector('.cursor-blink');
+                    if (cursorEl) cursorEl.remove();
+                    // Show response button
+                    loveResponseBtn.classList.add('show');
+                    // Scroll to button
+                    loveResponseBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
+            // Observe letter section to start typing
+            const letterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !letterRevealed) {
+                        startTypingEffect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            letterObserver.observe(document.querySelector('.letter-container'));
+
+            // Love response button
+            loveResponseBtn.addEventListener('click', () => {
+                const rect = loveResponseBtn.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                triggerExplosion(cx, cy, 120);
+                // Second explosion after delay
+                setTimeout(() => {
+                    triggerExplosion(cx + (Math.random() - 0.5) * 200, cy - 80 + (Math.random() - 0.5) *
+                        150, 70);
+                }, 400);
+                setTimeout(() => {
+                    triggerExplosion(cx - (Math.random() - 0.5) * 180, cy + 60 + (Math.random() - 0.5) *
+                        120, 60);
+                }, 700);
+                // Shake the heart
+                const heroNames = document.querySelector('.hero-names');
+                if (heroNames) {
+                    heroNames.style.animation = 'none';
+                    heroNames.offsetHeight;
+                    heroNames.style.animation = 'glowPulse 0.3s ease-in-out 5';
+                    setTimeout(() => {
+                        heroNames.style.animation = 'glowPulse 2s ease-in-out infinite';
+                    }, 1500);
+                }
+                loveResponseBtn.textContent = '❤️❤️❤️ بحبك يا معتز ❤️❤️❤️';
+                loveResponseBtn.style.background = 'linear-gradient(135deg, #ff4081, #e91e63)';
+                loveResponseBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    loveResponseBtn.style.transform = 'scale(1)';
+                }, 300);
+            });
+
+            // ============ 100 REASONS ============
+            const reasons = [
+                'عشان ضحكتك بتخليني أنسى همومي',
+                'عشان صوتك أحلى من أي موسيقى',
+                'عشان قلبك طيب وأبيض',
+                'عشان عيونك بتوصف الدنيا كلها',
+                'عشان اهتمامك بيا بيخليني أحس إني مهم',
+                'عشان ذكائك وطريقة تفكيرك',
+                'عشان حنيتك اللي مش طبيعية',
+                'عشان صبرك عليا',
+                'عشان بتفهميني من غير ما أتكلم',
+                'عشان وجودك في حياتي نعمة',
+                'عشان بتخليني عايز أكون أحسن',
+                'عشان كلامك الحلو اللي بيريح قلبي',
+                'عشان إنتِ اللي بتمسحي دموعي',
+                'عشان إنتِ اللي بتفرحيني لما أكون زعلان',
+                'عشان بحب أسمع رأيك في كل حاجة',
+                'عشان ثقتك فيا بتقويني',
+                'عشان إنتِ الشخص الوحيد اللي بيفهمني',
+                'عشان إنتِ اللي علمتيني معنى الحب',
+                'عشان معاكي بحس بالأمان',
+                'عشان بحب طريقتك في الكلام',
+                'عشان إنتِ اللي بتصحيني من النوم برسالة حلوة',
+                'عشان بحب أتخيل مستقبلنا سوا',
+                'عشان إنتِ اللي بتخلي حياتي ليها معنى',
+                'عشان إنتِ أجمل هدية من ربنا',
+                'عشان بحب غيرتك عليا',
+                'عشان بحب لما بتزعلي وترجعي تكلميني',
+                'عشان إنتِ اللي بتديني أمل',
+                'عشان بحب أشاركك كل تفاصيل يومي',
+                'عشان إنتِ اللي بتسمعيني وأنا بفضفض',
+                'عشان بحب أتخيل وشك وانتِ مبتسمة',
+                'عشان إنتِ اللي بتخليني أكمل في أصعب الأوقات',
+                'عشان بحب طموحك وأحلامك',
+                'عشان إنتِ اللي شايفاني زي ما أنا',
+                'عشان بحب قوة شخصيتك',
+                'عشان إنتِ اللي بتدعميني دايماً',
+                'عشان بحب عفوية كلامك',
+                'عشان إنتِ اللي بتخلي قلبي يدق بسرعة',
+                'عشان بحب أسمع قصصك وحكاياتك',
+                'عشان إنتِ اللي بتخليني أحس إني محظوظ',
+                'عشان بحب طريقتك في التعبير عن مشاعرك',
+                'عشان إنتِ اللي بتخليني أستنى المكالمة بفارغ الصبر',
+                'عشان بحب أتخيلنا واحنا متجوزين',
+                'عشان إنتِ اللي بتخلي أي يوم وحش يبقى حلو',
+                'عشان بحب روحك الجميلة',
+                'عشان إنتِ اللي بتفكري فيا قبل ما أفكر في نفسي',
+                'عشان بحب تفاصيلك الصغيرة',
+                'عشان إنتِ اللي بتخليني أحس بالدفا',
+                'عشان بحب أتكلم معاكي للساعات',
+                'عشان إنتِ اللي بتخليني عايز أحميكي',
+                'عشان بحب إخلاصك ووفائك',
+                'عشان إنتِ اللي مش بتزهقي مني',
+                'عشان بحب لما بتشاركي معايا أحلامك',
+                'عشان إنتِ اللي بتخليني فخور بنفسي',
+                'عشان بحب أسلوبك في الحياة',
+                'عشان إنتِ اللي بتخليني أحس إني كامل',
+                'عشان بحب نظراتك الحنونة',
+                'عشان إنتِ اللي بتديني دفعة للأمام',
+                'عشان بحب طيبتك اللي مبتتغيرش',
+                'عشان إنتِ اللي بتخلي قلبي يطير من الفرحة',
+                'عشان بحب رقتك وإحساسك',
+                'عشان إنتِ اللي بتفهمي حزني قبل ما أحكيه',
+                'عشان بحب أتخيل بيتنا الصغير',
+                'عشان إنتِ اللي بتخليني أحس إني قادر على أي حاجة',
+                'عشان بحب شجاعتك وجرأتك',
+                'عشان إنتِ اللي بتسامحيني لما أغلط',
+                'عشان بحب أسلوبك الراقي',
+                'عشان إنتِ اللي بتحبيني زي ما أنا',
+                'عشان بحب تضحياتك عشان خاطري',
+                'عشان إنتِ اللي بتخليني أكون نفسي',
+                'عشان بحب كرمك وجودك',
+                'عشان إنتِ اللي بتعلميني حاجات جديدة',
+                'عشان بحب أتخيلنا واحنا كبار',
+                'عشان إنتِ اللي بتخليني أنبسط بالحياة',
+                'عشان بحب إنك دايمًا جنبي ولو من بعيد',
+                'عشان إنتِ اللي بتفهميني أكتر من أي حد',
+                'عشان بحب طريقة تفكيرك الإيجابية',
+                'عشان إنتِ اللي مش بتخليني أحس بالوحدة',
+                'عشان بحب أتخيل ضحكتنا واحنا سوا',
+                'عشان إنتِ اللي بتديني سبب للاستمرار',
+                'عشان بحب نظافة قلبك',
+                'عشان إنتِ اللي بتخلي حياتي colorful',
+                'عشان بحب أتخيل أول لقاء بينا',
+                'عشان إنتِ اللي بتخليني عايز أكون قد المسؤولية',
+                'عشان بحب إحساسك المرهف',
+                'عشان إنتِ اللي بتفهمي صمتي',
+                'عشان بحب أتخيل فرحنا وفرحتنا',
+                'عشان إنتِ اللي بتديني حب غير مشروط',
+                'عشان بحب ضحكتك اللي زي الأطفال',
+                'عشان إنتِ اللي مبتتغيريش',
+                'عشان بحب أتخيل حياتنا بعد الجواز',
+                'عشان إنتِ اللي خلتيني أؤمن بالحب',
+                'عشان بحب كل حاجة فيكي بدون استثناء',
+                'عشان إنتِ اللي ربنا كتبك ليا',
+                'عشان بحبك بكل بساطة... من غير أسباب كتير',
+                'عشان إنتِ سما قلبي ودنيتي',
+                'عشان إنتِ اللي بستناكِ طول عمري',
+                'عشان إنتِ أغلى من أي حاجة في الدنيا',
+                'عشان إنتِ حلمي اللي لسه مكتملش',
+                'عشان إنتِ اللي هكمّل معاكي المشوار',
+                'عشان إنتِ نصي التاني اللي ناقصني',
+                'عشان إنتِ أميرتي وملكة قلبي',
+                'عشان إنتِ... سما. ❤️'
+            ];
+
+            const reasonsGrid = document.getElementById('reasons-grid');
+            reasons.forEach((reason, index) => {
+                const card = document.createElement('div');
+                card.className = 'reason-card';
+                card.innerHTML = `<span class="reason-num">#${index + 1}</span>${reason}`;
+                // Random animation delay
+                card.style.animationDelay = (index * 0.03) + 's';
+                reasonsGrid.appendChild(card);
+            });
+
+            // ============ GALLERY ============
+            const galleryItems = [
+                { emoji: '💕', label: 'أول رسالة حب', bg: 'linear-gradient(135deg, #4a1a5e, #8b3a6e)' },
+                { emoji: '📞', label: 'أول مكالمة', bg: 'linear-gradient(135deg, #3d1a5c, #6b2d7c)' },
+                { emoji: '💌', label: 'رسالة من القلب', bg: 'linear-gradient(135deg, #5a1a4e, #9b3a6e)' },
+                { emoji: '🌙', label: 'ليالي السهر', bg: 'linear-gradient(135deg, #2d1a5c, #5b3a8c)' },
+                { emoji: '🌟', label: 'أحلامنا سوا', bg: 'linear-gradient(135deg, #4a2a5e, #7b3a7e)' },
+                { emoji: '❤️', label: 'قلبين في قلب', bg: 'linear-gradient(135deg, #5a0a3e, #9b2a6e)' },
+                { emoji: '🦋', label: 'فراشات الحب', bg: 'linear-gradient(135deg, #3d2a5c, #6b4a8c)' },
+                { emoji: '💍', label: 'حلم الجواز', bg: 'linear-gradient(135deg, #4a1a4e, #8b4a7e)' },
+                { emoji: '🏡', label: 'بيتنا الجميل', bg: 'linear-gradient(135deg, #3a2a5c, #5b3a7c)' },
+                { emoji: '👶', label: 'عيلتنا المستقبلية', bg: 'linear-gradient(135deg, #4a1a5c, #7b3a6c)' },
+                { emoji: '✈️', label: 'سفرنا الأول', bg: 'linear-gradient(135deg, #2d2a5c, #5b4a8c)' },
+                { emoji: '🎉', label: 'يوم ما نتجمع', bg: 'linear-gradient(135deg, #5a1a5c, #9b3a7c)' },
+            ];
+
+            const galleryGrid = document.getElementById('gallery-grid');
+            galleryItems.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.style.background = item.bg;
+                galleryItem.innerHTML = `
+              <div class="gallery-item-inner">
+                <span class="gallery-icon">${item.emoji}</span>
+                <div class="gallery-overlay">${item.label}</div>
+              </div>`;
+                galleryItem.addEventListener('click', () => {
+                    lightboxContent.innerHTML =
+                        `<span style="font-size:8rem;display:block;">${item.emoji}</span><p style="color:var(--white);margin-top:15px;font-size:1.2rem;">${item.label}</p><p style="color:var(--text-secondary);margin-top:8px;">صورة من ذكريات حبنا الجميلة ❤️</p>`;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // ============ 3D BOOK ============
+            const bookPages = [
+                { emoji: '💌', text: 'كل صفحة في الكتاب ده شايلة كلمة من قلبي ليكي يا سما... اقلبي الصفحات علشان تشوفي اللي جوا ❤️' },
+                { emoji: '🌟', text: 'من أول ما شفت تعليقك على تيك توك، قلبي قال لي: "دي البنت اللي هتحبها". وقلبي مكانش غلطان.' },
+                { emoji: '💬', text: 'كل رسالة منك كانت بتخليني أبتسم. كل كلمة بتدخل قلبي وتستقر فيه. إنتِ اللي علمتيني إزاي الحب يبدأ بكلمة.' },
+                { emoji: '📞', text: 'لما سمعت صوتك أول مرة، عرفت إن في ناس صوتها لوحده كفيل يخليك تحبها. صوتك هو أحلى نغمة في دنيتي.' },
+                { emoji: '❤️', text: 'حبينا بعض من غير ما نتقابل. وده معناه إن حبنا مش مبني على شكل ولا مظهر، ده حب أرواح بجد.' },
+                { emoji: '💍', text: 'حلمي من وأنا صغير إني ألاقي بنت الحلال. ولقيتك. وإنتِ بنت الحلال اللي نفسي أتجوزها وأكمل معاها عمري.' },
+                { emoji: '🏡', text: 'بتخيل بيتنا الصغير، وضحكتنا وهنّا بنبني حياتنا سوا. بتخيلك جنبي كل يوم، وده اللي بيخليني أكمل.' },
+            ];
+            let currentBookPage = 0;
+
+            function updateBookPage() {
+                const page = bookPages[currentBookPage];
+                bookPageContent.innerHTML =
+                    `<span class="page-emoji">${page.emoji}</span><span>${page.text}</span>`;
+                bookIndicator.textContent = `صفحة ${currentBookPage + 1} من ${bookPages.length}`;
+                // Add flip animation
+                book3d.style.transform = `rotateY(${currentBookPage * 3}deg)`;
+                setTimeout(() => {
+                    book3d.style.transform = 'rotateY(0deg)';
+                }, 400);
+            }
+            document.getElementById('book-next').addEventListener('click', () => {
+                currentBookPage = (currentBookPage + 1) % bookPages.length;
+                updateBookPage();
+            });
+            document.getElementById('book-prev').addEventListener('click', () => {
+                currentBookPage = (currentBookPage - 1 + bookPages.length) % bookPages.length;
+                updateBookPage();
+            });
+            updateBookPage();
+
+            // ============ QUOTES SLIDER ============
+            const quotes = [
+                { text: 'الحب مش إنك تلاقي حد كامل، الحب إنك تلاقي حد ناقصك أنت.', author: '❤️' },
+                { text: 'بحبك مش لأنك أجمل حد، بحبك لأنك أجدع حد قلبي اختاره.', author: '💕' },
+                { text: 'الدنيا كلها بقت أحلى من ساعة ما عرفتك يا سما.', author: '🌟' },
+                { text: 'لو العمر كله يخلص في لحظة معاكي، هختار اللحظة دي.', author: '💫' },
+                { text: 'إنتِ مش بس حبيبتي، إنتِ صحبتي وروحي ودنيتي.', author: '🦋' },
+                { text: 'أجمل قصة حب هي اللي بتبدأ من غير ميعاد، زي ما بدأت قصتنا.', author: '✨' },
+            ];
+            let currentQuote = 0;
+            quotes.forEach((q, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'quote-slide' + (i === 0 ? ' active' : '');
+                slide.innerHTML = `"${q.text}"<span class="quote-author">${q.author}</span>`;
+                quotesSlider.appendChild(slide);
+            });
+            const quoteSlides = quotesSlider.querySelectorAll('.quote-slide');
+
+            function rotateQuotes() {
+                quoteSlides[currentQuote].classList.remove('active');
+                currentQuote = (currentQuote + 1) % quotes.length;
+                quoteSlides[currentQuote].classList.add('active');
+            }
+            setInterval(rotateQuotes, 4000);
+
+            // ============ SCROLL REVEAL ============
+            const scrollRevealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+            document.querySelectorAll(
+                '.glass-card, .neumorph-card, .dream-card, .counter-item, .reason-card, .gallery-item').forEach(
+                el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 0.7s ease';
+                    scrollRevealObserver.observe(el);
+                });
+
+            // ============ INIT ALL EFFECTS ============
+            function initAllEffects() {
+                animateBgParticles();
+                animateExplosionParticles();
+                // Initial small heart burst
+                setTimeout(() => {
+                    const heroSection = document.getElementById('hero');
+                    const rect = heroSection.getBoundingClientRect();
+                    triggerExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2, 50);
+                }, 1500);
+            }
+
+            // ============ KEYBOARD SHORTCUTS ============
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'm' && e.ctrlKey) {
+                    e.preventDefault();
+                    if (musicPlaying) stopMusic();
+                    else startMusic();
+                }
+            });
+
+            // ============ TOUCH RIPPLE EFFECT ON BUTTONS ============
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('button, .hero-btn, .gallery-item');
+                if (!target) return;
+                const rect = target.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                // Small sparkle at click point
+                for (let i = 0; i < 8; i++) {
+                    const p = createExplosionParticle(cx, cy);
+                    p.size = Math.random() * 12 + 6;
+                    p.vx = (Math.random() - 0.5) * 4;
+                    p.vy = (Math.random() - 0.5) * 4 - 2;
+                    p.decay = 0.03;
+                    p.life = 0.7;
+                    explosionParticles.push(p);
+                }
+            });
+
+            // ============ PREVENT ZOOM ON DOUBLE TAP (MOBILE) ============
+            document.addEventListener('dblclick', function(e) {
+                if (e.target.closest('button, a, .hero-btn')) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            console.log('❤️ الموقع جاهز! كل الحب لسما من معتز ❤️');
+            console.log('💫 لو شفتي الرسالة دي يا سما... بحبك أوي أوي! 💫');
+
+        })();
+    </script>
+</body>
+</html>
